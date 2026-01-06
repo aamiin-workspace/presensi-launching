@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guest Book - Tani Solution</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #0f9b0f 0%, #000000 100%); 
+            min-height: 100vh;
+            display: flex;
+            justify_content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px; 
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;                  
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            border: 3px solid #f9f9f9;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;      
+            display: block;
+        }
+
+        h2 { color: #333; font-size: 24px; margin-bottom: 8px; font-weight: 600; }
+        p.subtitle { color: #666; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-label { display: block; font-size: 12px; color: #888; margin-bottom: 5px; font-weight: 600; }
+        
+        input {
+            width: 100%;
+            padding: 16px; 
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #f9f9f9;
+            transition: 0.3s;
+            outline: none;
+            -webkit-appearance: none; 
+        }
+
+        input:focus {
+            border-color: #2e7d32;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: #2e7d32; 
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+            transition: transform 0.2s;
+        }
+
+        button:active { transform: scale(0.98); }
+        button:disabled { background: #ccc; box-shadow: none; }
+
+        .success-view {
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        .ticket-box {
+            border: 2px dashed #2e7d32;
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .t-label { font-size: 11px; text-transform: uppercase; color: #558b2f; letter-spacing: 1px; margin-bottom: 2px; }
+        .t-val { font-size: 18px; font-weight: 600; color: #1b5e20; margin-bottom: 12px; word-wrap: break-word; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loader {
+            width: 18px; height: 18px;
+            border: 2px solid #fff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px; 
+                align-items: center; 
+            }
+            
+            .card {
+                padding: 30px 20px; 
+                border-radius: 15px;
+            }
+
+            h2 { font-size: 20px; }
+            
+            input { font-size: 14px; padding: 14px; }
+            
+            button { padding: 16px; font-size: 15px; }
+
+            .footer { margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        
+        <form id="guestForm">
+            <div class="logo-circle">
+                <img src="tansol.png" alt="Logo Tani Solution">
+            </div>
+            <h2>Selamat Datang</h2>
+            <p class="subtitle">Mohon isi data diri Anda untuk<br>mengisi buku tamu.</p>
+
+            <div class="input-group">
+                <label class="input-label">NAMA LENGKAP</label>
+                <input type="text" name="Nama" placeholder="Contoh: Budi Santoso" required autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">ASAL INSTANSI / PERUSAHAAN</label>
+                <input type="text" name="Instansi" placeholder="Contoh: Dinas Pertanian / Pribadi" required autocomplete="off">
+            </div>
+
+            <button type="submit" id="btnSubmit">Check In Sekarang</button>
+        </form>
+
+        <div class="success-view" id="successView">
+            <div style="font-size:50px; color:#2e7d32; margin-bottom:10px;">🎉</div>
+            <h2>Terima Kasih!</h2>
+            <p class="subtitle" style="margin-bottom:10px">Data Anda berhasil disimpan.</p>
+            
+            <div class="ticket-box">
+                <div class="t-label">Nama Tamu</div>
+                <div class="t-val" id="resNama">-</div>
+                
+                <div class="t-label">Instansi</div>
+                <div class="t-val" id="resInstansi" style="margin-bottom:0;">-</div>
+            </div>
+
+            <p style="font-size:12px; color:#888; margin-top:20px;">
+                Selamat Datang di Launching <br> PT. Global Tani Solution.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0f7wg9qdzsijf40UM2pcI9Bn1e6kthBDHRnNasgNRsJIpcWT8dojPkDmKMszmLYe3w/exec'; 
+
+        const form = document.getElementById('guestForm');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const successView = document.getElementById('successView');
+        const resNama = document.getElementById('resNama');
+        const resInstansi = document.getElementById('resInstansi');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const inputNama = form.elements['Nama'].value;
+            const inputInstansi = form.elements['Instansi'].value;
+
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<span class="loader"></span> Memproses...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    resNama.innerText = inputNama;
+                    resInstansi.innerText = inputInstansi;
+
+                    form.style.display = 'none';
+                    successView.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Koneksi bermasalah. Coba lagi.");
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = 'Check In Sekarang';
+                });
+        });
+    </script>
+
+</body>
+</html>
