@@ -10,48 +10,47 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
-            background: linear-gradient(135deg, #0f9b0f 0%, #000000 100%); 
+            /* BACKGROUND GLOBAL TANI SOLUTION */
+            /* Gradasi dari Hijau Hutan Gelap ke Hijau Daun Segar */
+            background: linear-gradient(135deg, #1b5e20 0%, #4caf50 100%);
             min-height: 100vh;
             display: flex;
             justify_content: center;
             align-items: center;
             padding: 20px;
+            /* Pattern halus opsional agar tidak terlalu polos */
+            background-image: 
+                linear-gradient(135deg, #1b5e20 0%, #4caf50 100%),
+                radial-gradient(at 0% 0%, rgba(255,255,255,0.1) 0px, transparent 50%);
         }
 
+        /* CARD DENGAN EFEK GLASSMORPHISM (BLUR ELEGAN) */
         .card {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.85); /* Transparan 85% */
+            backdrop-filter: blur(12px);            /* Efek Blur di belakang kartu */
+            -webkit-backdrop-filter: blur(12px);    /* Support untuk Safari/iPhone */
             width: 100%;
             max-width: 420px; 
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            /* Shadow yang lebih lembut untuk efek melayang */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.6); /* Border tipis efek kaca */
             text-align: center;
             position: relative;
             transition: all 0.3s ease;
         }
 
-        .logo-circle {
-            width: 80px;
-            height: 80px;
-            background: #e8f5e9;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 2px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
+        /* LOGO CIRCLE (Single & Clean) */
         .logo-circle {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             margin: 0 auto 25px;
-            overflow: hidden;                  
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-            border: 3px solid #f9f9f9;
+            overflow: hidden;                 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            border: 3px solid #ffffff;
+            background: #fff; /* Jaga-jaga jika gambar transparan */
         }
 
         .logo-circle img {
@@ -61,19 +60,19 @@
             display: block;
         }
 
-        h2 { color: #333; font-size: 24px; margin-bottom: 8px; font-weight: 600; }
-        p.subtitle { color: #666; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+        h2 { color: #1b5e20; font-size: 24px; margin-bottom: 8px; font-weight: 600; }
+        p.subtitle { color: #555; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
 
         .input-group { margin-bottom: 20px; text-align: left; }
-        .input-label { display: block; font-size: 12px; color: #888; margin-bottom: 5px; font-weight: 600; }
+        .input-label { display: block; font-size: 12px; color: #4caf50; margin-bottom: 5px; font-weight: 600; letter-spacing: 0.5px; }
         
         input {
             width: 100%;
             padding: 16px; 
-            border: 2px solid #eee;
+            border: 1px solid #ccc; /* Border lebih tipis agar elegan */
             border-radius: 12px;
             font-size: 16px;
-            background: #f9f9f9;
+            background: rgba(255, 255, 255, 0.9); /* Input sedikit transparan */
             transition: 0.3s;
             outline: none;
             -webkit-appearance: none; 
@@ -82,13 +81,13 @@
         input:focus {
             border-color: #2e7d32;
             background: #fff;
-            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.1);
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15);
         }
 
         button {
             width: 100%;
             padding: 18px;
-            background: #2e7d32; 
+            background: #2e7d32; /* Hijau Branding Utama */
             color: white;
             border: none;
             border-radius: 12px;
@@ -97,12 +96,14 @@
             cursor: pointer;
             margin-top: 10px;
             box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
-            transition: transform 0.2s;
+            transition: transform 0.2s, background 0.3s;
         }
 
+        button:hover { background: #1b5e20; }
         button:active { transform: scale(0.98); }
-        button:disabled { background: #ccc; box-shadow: none; }
+        button:disabled { background: #999; box-shadow: none; cursor: not-allowed; }
 
+        /* SUCCESS VIEW STYLE */
         .success-view {
             display: none;
             animation: slideUp 0.5s ease;
@@ -110,7 +111,7 @@
 
         .ticket-box {
             border: 2px dashed #2e7d32;
-            background: #f1f8e9;
+            background: rgba(232, 245, 233, 0.7); /* Background tiket transparan dikit */
             padding: 20px;
             border-radius: 15px;
             margin-top: 20px;
@@ -135,24 +136,13 @@
         }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+        /* RESPONSIVE */
         @media (max-width: 480px) {
-            body {
-                padding: 15px; 
-                align-items: center; 
-            }
-            
-            .card {
-                padding: 30px 20px; 
-                border-radius: 15px;
-            }
-
+            body { padding: 15px; }
+            .card { padding: 30px 20px; }
             h2 { font-size: 20px; }
-            
             input { font-size: 14px; padding: 14px; }
-            
             button { padding: 16px; font-size: 15px; }
-
-            .footer { margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -181,9 +171,9 @@
         </form>
 
         <div class="success-view" id="successView">
-            <div style="font-size:50px; color:#2e7d32; margin-bottom:10px;">🎉</div>
+            <div style="font-size:60px; color:#2e7d32; margin-bottom:10px;">🎉</div>
             <h2>Terima Kasih!</h2>
-            <p class="subtitle" style="margin-bottom:10px">Data Anda berhasil disimpan.</p>
+            <p class="subtitle" style="margin-bottom:10px">Data kehadiran Anda telah<br>berhasil kami simpan.</p>
             
             <div class="ticket-box">
                 <div class="t-label">Nama Tamu</div>
@@ -193,8 +183,8 @@
                 <div class="t-val" id="resInstansi" style="margin-bottom:0;">-</div>
             </div>
 
-            <p style="font-size:12px; color:#888; margin-top:20px;">
-                Selamat Datang di Launching <br> PT. Global Tani Solution.
+            <p style="font-size:11px; color:#666; margin-top:25px; border-top:1px solid #ddd; padding-top:15px;">
+                &copy; 2026 PT. Global Tani Solution
             </p>
         </div>
 
@@ -228,7 +218,7 @@
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
-                    alert("Koneksi bermasalah. Coba lagi.");
+                    alert("Koneksi internet tidak stabil. Silakan coba lagi.");
                     btnSubmit.disabled = false;
                     btnSubmit.innerHTML = 'Check In Sekarang';
                 });
